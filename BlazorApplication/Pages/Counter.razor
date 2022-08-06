@@ -1,0 +1,33 @@
+﻿@page "/counter"
+@page "/counter/{startingValue:double}"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @count</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+    private double count = 1;
+
+    [Parameter]
+    public double StartingValue { get; set; } = 0;
+
+    [Parameter]
+    public double IncrementAmount { get; set; } = 1;
+
+    protected override void OnParametersSet()
+    {
+        count += StartingValue;
+        base.OnParametersSet();
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
+        count+=IncrementAmount;
+    }
+}
